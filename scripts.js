@@ -16,6 +16,7 @@ function engadirMinas() {
       `#casilla${numeroaleatorio}`
     );
     casillaescollida.classList.add("mina");
+    casillaescollida.innerHTML = "m";
   }
   comprobarCercania();
 }
@@ -100,10 +101,22 @@ function comprobarCercania() {
     }
   }
 }
-function elixeUnha(){
-  const casillaescollida = 5;
-  
-}
 
 //activadores, despois poñer cun boton
 crearCasillas();
+
+//detectar cando se fai click
+const cadros = document.querySelectorAll(".casilla");
+
+function fixoClick() {
+  const contido = this.textContent;
+  if(contido == "mina"){
+    alert("perdiches");
+  } else{
+    this.classList.add("comprobada");
+  }
+}
+
+cadros.forEach(function (cadro) {
+  cadro.addEventListener("click", fixoClick);
+});
