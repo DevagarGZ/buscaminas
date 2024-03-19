@@ -37,7 +37,7 @@ function comprobarCercania() {
     let ultimodigito = idcasilla[idcasilla.length - 1];
 
     if (casillaacomprobar.classList.contains("mina")) {
-      console.log("es una mina");
+      //console.log("es una mina");
       //non se fai nada
     } else {
       arriba = document.getElementById(`casilla${i - superior}`);
@@ -56,11 +56,10 @@ function comprobarCercania() {
       diagonalie = document.getElementById(
         `casilla${i - diagonalinferioresquerda}`
       );
-
-      if (arriba && arriba > 0 && arriba.classList.contains("mina")) {
+      if (arriba && arriba.classList.contains("mina")) {
         numerominas++;
       }
-      if (abaixo && abaixo < 100 && abaixo.classList.contains("mina")) {
+      if (abaixo && abaixo.classList.contains("mina")) {
         numerominas++;
       }
       if (ladoe && ultimodigito < 9 && ladoe.classList.contains("mina")) {
@@ -110,10 +109,46 @@ const cadros = document.querySelectorAll(".casilla");
 
 function fixoClick() {
   const contido = this.textContent;
-  if(contido == "mina"){
+  if (contido == "m") {
     alert("perdiches");
-  } else{
     this.classList.add("comprobada");
+  } else {
+    this.classList.add("comprobada");
+    const superior = -10;
+    const inferior = 10;
+    const esquerda = -1;
+    const dereita = 1;
+    const diagonalsuperiordereita = superior + dereita;
+    const diagonalsuperioresquerda = superior + esquerda;
+    const diagonalinferiordereita = inferior + dereita;
+    const diagonalinferioresquerda = inferior + esquerda;
+
+    const casillactual = this.id.replace(/[a-zA-Z]+/g, "");
+    let comparriba = false;
+    let comabaixo = false;
+
+    let casillainicial = casillactual;
+
+    while (comparriba == false) {
+      const arriba = document.getElementById(`casilla${casillainicial - superior}`);
+      if (!arriba || arriba.classList.contains("mina")) {
+        casillainicial = casillactual;
+        comparriba = true;
+      } else {
+        arriba.classList.add("comprobada");
+        casillainicial = casillainicial - superior;
+      }
+    }
+    while (comabaixo == false) {
+      const abaixo = document.getElementById(`casilla${casillainicial - inferior}`);
+      if (!abaixo || abaixo.classList.contains("mina")) {
+        casillainicial = casillactual;
+        comabaixo = true;
+      } else {
+        abaixo.classList.add("comprobada");
+        casillainicial = casillainicial - inferior;
+      }
+    }
   }
 }
 
