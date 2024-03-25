@@ -126,11 +126,19 @@ function fixoClick() {
     const casillactual = this.id.replace(/[a-zA-Z]+/g, "");
     let comparriba = false;
     let comabaixo = false;
+    let comesquerda = false;
+    let comdereita = false;
+    let comdsd = false;
+    let comdse = false;
+    let comdid = false;
+    let comdie = false;
 
     let casillainicial = casillactual;
 
     while (comparriba == false) {
-      const arriba = document.getElementById(`casilla${casillainicial - superior}`);
+      const arriba = document.getElementById(
+        `casilla${casillainicial - superior}`
+      );
       if (!arriba || arriba.classList.contains("mina")) {
         casillainicial = casillactual;
         comparriba = true;
@@ -140,13 +148,87 @@ function fixoClick() {
       }
     }
     while (comabaixo == false) {
-      const abaixo = document.getElementById(`casilla${casillainicial - inferior}`);
+      const abaixo = document.getElementById(
+        `casilla${casillainicial - inferior}`
+      );
       if (!abaixo || abaixo.classList.contains("mina")) {
         casillainicial = casillactual;
         comabaixo = true;
       } else {
         abaixo.classList.add("comprobada");
         casillainicial = casillainicial - inferior;
+      }
+    }
+    while (comesquerda == false) {
+      const ladoesquerdo = document.getElementById(
+        `casilla${casillainicial - esquerda}`
+      );
+      if (!ladoesquerdo || ladoesquerdo.classList.contains("mina")) {
+        casillainicial = casillactual;
+        comesquerda = true;
+      } else {
+        ladoesquerdo.classList.add("comprobada");
+        casillainicial = casillainicial - esquerda;
+      }
+    }
+    while (comdereita == false) {
+      const ladodereiro = document.getElementById(
+        `casilla${casillainicial - dereita}`
+      );
+      if (!ladodereiro || ladodereiro.classList.contains("mina")) {
+        casillainicial = casillactual;
+        comdereita = true;
+      } else {
+        ladodereiro.classList.add("comprobada");
+        casillainicial = casillainicial - dereita;
+      }
+    }
+    while (comdsd == false) {
+      const dsd = document.getElementById(
+        `casilla${casillainicial - diagonalsuperiordereita}`
+      );
+      if (!dsd || dsd.classList.contains("mina")) {
+        casillainicial = casillactual;
+        comdsd = true;
+      } else {
+        dsd.classList.add("comprobada");
+        casillainicial = casillainicial - diagonalsuperiordereita;
+      }
+    }
+    while (comdse == false) {
+      const dse = document.getElementById(
+        `casilla${casillainicial - diagonalsuperioresquerda}`
+      );
+      if (!dse || dse.classList.contains("mina")) {
+        casillainicial = casillactual;
+        comdse = true;
+      } else {
+        dse.classList.add("comprobada");
+        casillainicial = casillainicial - diagonalsuperioresquerda;
+      }
+    }
+    while (comdid == false) {
+      const did = document.getElementById(
+        `casilla${casillainicial - diagonalinferiordereita}`
+      );
+      if (!did || did.classList.contains("mina")) {
+        casillainicial = casillactual;
+        comdid = true;
+      } else {
+        did.classList.add("comprobada");
+        casillainicial = casillainicial - diagonalinferiordereita;
+      }
+    }
+    while (comdie == false) {
+      const die = document.getElementById(
+        `casilla${casillainicial - diagonalinferioresquerda}`
+      );
+      if (!die || die.classList.contains("mina")) {
+        casillainicial = casillactual;
+        comdie = true;
+      } else {
+        die.classList.add("comprobada");
+        casillainicial = casillainicial - diagonalinferioresquerda;
       }
     }
   }
