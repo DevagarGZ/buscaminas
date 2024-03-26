@@ -99,13 +99,8 @@ function comprobarCercania() {
       casillaacomprobar.innerHTML = numerominas;
     }
   }
+  facerpulsables();
 }
-
-//activadores, despois poñer cun boton
-crearCasillas();
-
-//detectar cando se fai click
-const cadros = document.querySelectorAll(".casilla");
 
 function fixoClick() {
   const contido = this.textContent;
@@ -234,6 +229,25 @@ function fixoClick() {
   }
 }
 
-cadros.forEach(function (cadro) {
-  cadro.addEventListener("click", fixoClick);
+//botones del juego
+const breiniciar = document.getElementById("breiniciar");
+
+breiniciar.addEventListener("click", function () {
+  const casillas = document.querySelectorAll(".casilla");
+
+  casillas.forEach(function (casilla) {
+    casilla.remove();
+  });
+  crearCasillas();
 });
+
+function facerpulsables() {
+  //detectar cando se fai click
+  const cadros = document.querySelectorAll(".casilla");
+  cadros.forEach(function (cadro) {
+    cadro.addEventListener("click", fixoClick);
+  });
+}
+
+//iniciador de partida
+crearCasillas();
