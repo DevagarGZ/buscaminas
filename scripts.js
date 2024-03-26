@@ -239,6 +239,8 @@ breiniciar.addEventListener("click", function () {
     casilla.remove();
   });
   crearCasillas();
+  reiniciarCronometro();
+  iniciarCronometro();
 });
 
 function facerpulsables() {
@@ -249,5 +251,42 @@ function facerpulsables() {
   });
 }
 
-//iniciador de partida
+//cronometro
+let cronometro;
+let tiempo = 0;
+let iniciado = false;
+
+function iniciarCronometro() {
+  if (!iniciado) {
+    iniciado = true;
+    cronometro = setInterval(actualizarCronometro, 1000);
+  }
+}
+
+function detenerCronometro() {
+  clearInterval(cronometro);
+  iniciado = false;
+}
+
+function reiniciarCronometro() {
+  detenerCronometro();
+  tiempo = 0;
+  actualizarCronometro();
+}
+
+function actualizarCronometro() {
+  tiempo++;
+  const minutos = Math.floor((tiempo % 3600) / 60);
+  const segundos = tiempo % 60;
+  document.getElementById("cronometro").innerText = `${formatoTiempo(
+    minutos
+  )}:${formatoTiempo(segundos)}`;
+}
+
+function formatoTiempo(tiempo) {
+  return tiempo < 10 ? "0" + tiempo : tiempo;
+}
+
+//iniciadores
 crearCasillas();
+iniciarCronometro();
