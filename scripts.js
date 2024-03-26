@@ -37,8 +37,7 @@ function comprobarCercania() {
     let ultimodigito = idcasilla[idcasilla.length - 1];
 
     if (casillaacomprobar.classList.contains("mina")) {
-      //console.log("es una mina");
-      //non se fai nada
+      //es una mina, no se hace nada.
     } else {
       arriba = document.getElementById(`casilla${i - superior}`);
       abaixo = document.getElementById(`casilla${i - inferior}`);
@@ -105,8 +104,12 @@ function comprobarCercania() {
 function fixoClick() {
   const contido = this.textContent;
   if (contido == "m") {
-    alert("perdiches");
-    this.classList.add("comprobada");
+    const main = document.getElementById("buscaminas");
+    const ganaches = document.querySelector(".avisos .ganaches");
+    ganaches.classList.add("oculto");
+    main.classList.add("mostraraviso");
+    this.classList.add("explotada");
+    detenerCronometro();
   } else {
     this.classList.add("comprobada");
     const superior = -10;
@@ -227,21 +230,28 @@ function fixoClick() {
       }
     }
   }
+  let comprobadas = document.getElementsByClassName("comprobada");
+  console.log(comprobadas.length);
+  if (comprobadas.length > 89) {
+    console.log("juin");
+  }
 }
 
 //botones del juego
-const breiniciar = document.getElementById("breiniciar");
-
-breiniciar.addEventListener("click", function () {
-  const casillas = document.querySelectorAll(".casilla");
-
-  casillas.forEach(function (casilla) {
-    casilla.remove();
+const reintentar = document.getElementsByClassName("reintentar");
+const buscaminas = document.getElementById("buscaminas");
+for (var i = 0; i < reintentar.length; i++) {
+  reintentar[i].addEventListener("click", function () {
+    const casillas = document.querySelectorAll(".casilla");
+    casillas.forEach(function (casilla) {
+      casilla.remove();
+    });
+    crearCasillas();
+    reiniciarCronometro();
+    iniciarCronometro();
+    buscaminas.classList.remove("mostraraviso");
   });
-  crearCasillas();
-  reiniciarCronometro();
-  iniciarCronometro();
-});
+}
 
 function facerpulsables() {
   //detectar cando se fai click

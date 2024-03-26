@@ -31,7 +31,7 @@ ul {
   padding: 0;
 }
 /**/
-main{
+main {
   position: relative;
 }
 #tablero {
@@ -52,11 +52,14 @@ main{
   justify-content: center;
   align-items: center;
 }
-.casilla:hover{
+.casilla:hover {
   box-shadow: 0.5px 0.5px 0px #888, 1px 1px 0px #888, 1.5px 1.5px 0px #888;
 }
 .mina {
   background: black;
+}
+.explotada {
+  background: red;
 }
 .casilla::after {
   content: "";
@@ -66,25 +69,33 @@ main{
   background: #bbb;
   border-radius: 2px;
 }
-.casilla.comprobada{
+.casilla.comprobada {
   box-shadow: none;
 }
-.comprobada::after {
+.comprobada::after,
+.mostraraviso .casilla::after {
   content: none;
 }
 
 /*avisos*/
-.avisos{
-  background: white;
+.avisos {
+  display: none;
+}
+.mostraraviso .borroso {
+  filter: blur(1.5px);
+}
+.mostraraviso .avisos {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
-.avisos .perdiches{
-  background: tomato;
+.avisos article {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -92,4 +103,14 @@ main{
   align-items: center;
   gap: 1rem;
   padding: 1rem;
+}
+.avisos .perdiches h2 {
+  color: #d22000;
+}
+.avisos p,
+.avisos h2 {
+  text-shadow: 1px 1px 1px #fff;
+}
+.avisos .oculto {
+  display: none;
 }
