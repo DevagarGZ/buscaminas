@@ -1,38 +1,44 @@
-/*Tema */
-:root {
-  --corprimario: #0000ff;
-  --corsecundario: #8080ff;
-  --coracento: #ffff00;
-  --corfondo: #dfdfff;
-  --cortexto: #000040;
-  --blanco: #fff;
-  --negro: #000;
-}
 /*axustes inciales*/
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
-html {
-  scroll-behavior: smooth; /*scroll suave*/
-}
 body,
 figure {
   margin: 0;
   padding: 0;
 }
-a {
-  text-decoration: none;
-}
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
 /**/
+/*cabecera*/
+header{
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #bbb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 main {
+  width: fit-content;
+  min-height: 90vh;
   position: relative;
+  margin: 0 auto;
+  margin-top: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
+}
+.controles{
+  width: 100%;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
 }
 #tablero {
   display: grid;
@@ -51,12 +57,11 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
+  cursor: default;
 }
 .casilla:hover {
   box-shadow: 0.5px 0.5px 0px #888, 1px 1px 0px #888, 1.5px 1.5px 0px #888;
-}
-.mina {
-  background: black;
 }
 .explotada {
   background: red;
@@ -68,6 +73,7 @@ main {
   position: absolute;
   background: #bbb;
   border-radius: 2px;
+  cursor: pointer;
 }
 .casilla.comprobada {
   box-shadow: none;
@@ -77,19 +83,34 @@ main {
   content: none;
 }
 
+/*colores de los números*/
+.cantidad0{
+  color: transparent;
+}
+.cantidad1{
+  color: blue;
+}
+.cantidad2{
+  color: green;
+}
+.cantidad3{
+  color: yellow;
+}
+.cantidad4{
+  color: red;
+}
+
 /*avisos*/
 .avisos {
   display: none;
 }
 .mostraraviso .borroso {
-  filter: blur(1.5px);
+  filter: blur(1px);
+  pointer-events: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
-.mostraraviso .avisos {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+.mostraraviso .avisos {  
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -101,11 +122,16 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 1px;
   padding: 1rem;
 }
 .avisos .perdiches h2 {
+  margin-bottom: 0;
   color: #d22000;
+}
+.avisos .ganaches h2{
+  margin-bottom: 0;
+  color: #126312;
 }
 .avisos p,
 .avisos h2 {
@@ -113,4 +139,18 @@ main {
 }
 .avisos .oculto {
   display: none;
+}
+/*pie de página*/
+footer{
+  padding: 1rem;
+  background: #000;
+  color: #fff;
+}
+/*responsive*/
+@media (max-width: 400px){
+  #tablero {
+    grid-template-columns: repeat(10, 22px);
+    grid-template-rows: repeat(10, 22px);
+    gap: 4px;
+  }
 }

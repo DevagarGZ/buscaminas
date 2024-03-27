@@ -16,7 +16,8 @@ function engadirMinas() {
       `#casilla${numeroaleatorio}`
     );
     casillaescollida.classList.add("mina");
-    casillaescollida.innerHTML = "m";
+    casillaescollida.innerHTML =
+      '<svg  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-bomb"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15.349 5.349l3.301 3.301a1.2 1.2 0 0 1 0 1.698l-.972 .972a7.5 7.5 0 1 1 -5 -5l.972 -.972a1.2 1.2 0 0 1 1.698 0z" /><path d="M17 7l1.293 -1.293a2.414 2.414 0 0 0 .707 -1.707a1 1 0 0 1 1 -1h1" /><path d="M7 13a3 3 0 0 1 3 -3" /></svg>';
   }
   comprobarCercania();
 }
@@ -96,14 +97,16 @@ function comprobarCercania() {
         numerominas++;
       }
       casillaacomprobar.innerHTML = numerominas;
+      casillaacomprobar.classList.add(`cantidad${numerominas}`);
     }
   }
   facerpulsables();
 }
 
 function fixoClick() {
-  const contido = this.textContent;
-  if (contido == "m") {
+  const contido = this.classList.contains("mina");
+  if (contido == true) {
+    //exploto una mina
     const main = document.getElementById("buscaminas");
     const ganaches = document.querySelector(".avisos .ganaches");
     ganaches.classList.add("oculto");
@@ -111,6 +114,7 @@ function fixoClick() {
     this.classList.add("explotada");
     detenerCronometro();
   } else {
+    //hizo click en una casilla sin mina
     this.classList.add("comprobada");
     const superior = -10;
     const inferior = 10;
@@ -230,10 +234,15 @@ function fixoClick() {
       }
     }
   }
+  //comprobar si descubrio todas las casillas
   let comprobadas = document.getElementsByClassName("comprobada");
   console.log(comprobadas.length);
   if (comprobadas.length > 89) {
-    console.log("juin");
+    const main = document.getElementById("buscaminas");
+    const perdiches = document.querySelector(".avisos .perdiches");
+    perdiches.classList.add("oculto");
+    main.classList.add("mostraraviso");
+    detenerCronometro();
   }
 }
 
