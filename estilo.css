@@ -1,3 +1,13 @@
+/*tema*/
+:root {
+  --colorprimario: #627254;
+  --colorsecundario: #76885b;
+  --colorterciario: #ddd;
+  --colorfondo: #eee;
+  --colortexto: #333;
+  --colormina: #bbb;
+  --colorminafondo: #999;
+}
 /*axustes inciales*/
 *,
 *::before,
@@ -9,20 +19,40 @@ figure {
   margin: 0;
   padding: 0;
 }
+/*componentes*/
+button {
+  background: var(--colorprimario);
+  color: var(--colorfondo);
+  border: none;
+  border-radius: 1rem;
+  font-size: 1.1rem;
+  padding: 0.2rem 1rem;
+  box-shadow: 1px 1px 2px var(--colorsecundario);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out;
+}
+button:hover,
+button:active {
+  box-shadow: 2px 2px 8px var(--colorsecundario);
+}
 /**/
+body {
+  background: var(--colorfondo);
+  font-family: sans-serif;
+}
 /*cabecera*/
-header{
+header {
   width: 100%;
   height: 100px;
   position: absolute;
   top: 0;
   left: 0;
-  background: #bbb;
+  background: var(--colorprimario);
+  color: var(--colorfondo);
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 main {
   width: fit-content;
   min-height: 90vh;
@@ -31,14 +61,20 @@ main {
   margin-top: 130px;
   display: flex;
   flex-direction: column;
-  justify-content:flex-start;
+  justify-content: flex-start;
   align-items: center;
+  color: var(--colortexto);
 }
-.controles{
+.controles {
   width: 100%;
   margin: 1rem 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+#cronometro {
+  font-family: monospace;
+  font-size: 1.5rem;
 }
 #tablero {
   display: grid;
@@ -50,28 +86,32 @@ main {
   position: relative;
   width: 100%;
   height: auto;
-  background: #888;
+  background: var(--colorminafondo);
   border-radius: 2px;
-  box-shadow: 0.5px 0.5px 0px #888, 1px 1px 0px #888, 1.5px 1.5px 0px #888,
-    2px 2px 0px #888, 2.5px 2.5px 0px #888;
+  box-shadow: 0.5px 0.5px 0px var(--colorminafondo),
+    1px 1px 0px var(--colorminafondo), 1.5px 1.5px 0px var(--colorminafondo),
+    2px 2px 0px var(--colorminafondo), 2.5px 2.5px 0px var(--colorminafondo);
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
   cursor: default;
+  transition: box-shadow 0.2s ease-in-out;
 }
-.casilla:hover {
-  box-shadow: 0.5px 0.5px 0px #888, 1px 1px 0px #888, 1.5px 1.5px 0px #888;
+.casilla:hover,
+.casilla:active {
+  box-shadow: 0.5px 0.5px 0px var(--colorminafondo),
+    1px 1px 0px var(--colorminafondo), 1.5px 1.5px 0px var(--colorminafondo);
 }
 .explotada {
-  background: red;
+  background: #f00;
 }
 .casilla::after {
   content: "";
   width: 100%;
   height: 100%;
   position: absolute;
-  background: #bbb;
+  background: var(--colormina);
   border-radius: 2px;
   cursor: pointer;
 }
@@ -84,19 +124,19 @@ main {
 }
 
 /*colores de los números*/
-.cantidad0{
+.cantidad0 {
   color: transparent;
 }
-.cantidad1{
+.cantidad1 {
   color: blue;
 }
-.cantidad2{
+.cantidad2 {
   color: green;
 }
-.cantidad3{
+.cantidad3 {
   color: yellow;
 }
-.cantidad4{
+.cantidad4 {
   color: red;
 }
 
@@ -110,7 +150,7 @@ main {
   user-select: none;
   -webkit-touch-callout: none;
 }
-.mostraraviso .avisos {  
+.mostraraviso .avisos {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -127,27 +167,44 @@ main {
 }
 .avisos .perdiches h2 {
   margin-bottom: 0;
-  color: #d22000;
+  color: #f00;
 }
-.avisos .ganaches h2{
+.avisos .ganaches h2 {
   margin-bottom: 0;
-  color: #126312;
+  color: #470;
 }
 .avisos p,
 .avisos h2 {
+  color: var(--colortexto);
   text-shadow: 1px 1px 1px #fff;
 }
 .avisos .oculto {
   display: none;
 }
 /*pie de página*/
-footer{
+footer {
   padding: 1rem;
-  background: #000;
-  color: #fff;
+  background: var(--colorprimario);
+  color: var(--colorfondo);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+footer p {
+  font-size: 1rem;
+  font-style: italic;
+}
+footer a svg {
+  width: 200px;
+  height: auto;
+  margin: 0 auto;
+  color: var(--colorsecundario);
+}
+footer a:hover svg {
+  color: var(--colorfondo);
 }
 /*responsive*/
-@media (max-width: 400px){
+@media (max-width: 400px) {
   #tablero {
     grid-template-columns: repeat(10, 22px);
     grid-template-rows: repeat(10, 22px);
