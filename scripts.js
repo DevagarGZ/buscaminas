@@ -109,7 +109,9 @@ function fixoClick() {
     //exploto una mina
     const main = document.getElementById("buscaminas");
     const ganaches = document.querySelector(".avisos .ganaches");
+    const perdiches = document.querySelector(".avisos .perdiches");
     ganaches.classList.add("oculto");
+    perdiches.classList.remove("oculto");
     main.classList.add("mostraraviso");
     this.classList.add("explotada");
     detenerCronometro();
@@ -240,7 +242,9 @@ function fixoClick() {
   if (comprobadas.length > 89) {
     const main = document.getElementById("buscaminas");
     const perdiches = document.querySelector(".avisos .perdiches");
+    const ganaches = document.querySelector(".avisos .ganaches");
     perdiches.classList.add("oculto");
+    ganaches.classList.remove("oculto");
     main.classList.add("mostraraviso");
     detenerCronometro();
   }
