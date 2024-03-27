@@ -12,7 +12,7 @@ El juego de buscaminas es un clásico juego de mesa en el que el jugador debe de
 
 ## Cómo jugar
 
-Entra en: (https://devagargz.github.io/buscaminas/){:target="_blank"}
+Entra en: [Buscaminas](https://devagargz.github.io/buscaminas/){:target="_blank"}
 
 1. Haz clic en las casillas para revelarlas.
 2. Si haces clic en una mina, el juego termina.
